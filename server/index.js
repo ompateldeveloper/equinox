@@ -1,7 +1,8 @@
 require("dotenv").config()
 // import * as express from "express"
 // const app = express()()
-const app = require("express")();
+const express = require("express");
+const app = express();
 const mongoose = require("mongoose");
 
 const bodyParser = require('body-parser');  
@@ -21,9 +22,10 @@ app.get("/",requireAuth, (req, res) => {
 
 // custom routes 
 const userRoutes = require("./routes/UserRoutes")
-const musicRoutes = require("./routes/musicRoutes")
 app.use("/api/user",userRoutes);
-app.use("/api/library",musicRoutes);
+
+const musicRoutes = require("./routes/musicRoutes")
+app.use("/api/music",musicRoutes);
 
 
 
