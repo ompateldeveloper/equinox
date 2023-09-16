@@ -1,6 +1,5 @@
 require("dotenv").config()
-// import * as express from "express"
-// const app = express()()
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -36,5 +35,5 @@ mongoose.connect(process.env.URI)
     })
 })
 .catch((err)=>{
-    console.log("err!",err);
+    console.log("failed to connect",err);
 })

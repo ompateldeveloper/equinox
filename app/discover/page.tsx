@@ -1,9 +1,9 @@
-import React from 'react'
+"use client";
 
 export default function Discover() {
-  return (
-    <div className="discover">
-        
-    </div>
-  )
+    return (
+        <div className="discover">
+            
+        </div>
+    )
 }

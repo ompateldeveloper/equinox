@@ -1,7 +1,18 @@
+"use client";
 import Link from "next/link";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 
 export default function Navbar() {
+  const {user,dispatch} = useAuthContext()
+
+  const handleLogout = ()=>{
+        // remove user from storage
+        localStorage.removeItem('user')
+
+        // dispatch logout action
+        dispatch({ type: 'LOGOUT' })
+  }
   return (
     <nav>
         <div className="p-2 flex place-items-center ">
@@ -13,14 +24,14 @@ export default function Navbar() {
             </Link>
             
             <div className="ml-auto flex justify-between">
-              <div className="grid">
-                  <div className="text-gray-300">Logged in as <span className="text-teal-500">{"ompateldeveloper"}</span></div>
-                  <Link href={"logout"} className="logout-btn text-gray-500 block ml-auto">Logout</Link>
-              </div>
-              {/* <>
+             { user? (<div className="grid">
+                  <div className="text-gray-300">Logged in as <span className="text-teal-500">{user.email}</span></div>
+                  <div onClick={handleLogout} className="logout-btn cursor-pointer  text-gray-500 block ml-auto">Logout</div>
+              </div>):
+              (<>
               <Link href={"/login"}><div className="login-btn h-10 m-1 align-middle px-4 py-2 rounded-lg text-white hover:text-teal-400 ease-in-out duration-300"><span className="opacity-90 ">Login</span></div></Link>
               <Link href={"/signup"}><div className="signup-btn h-10 m-1 align-middle px-4 py-2 rounded-lg text-white hover:text-teal-400 ease-in-out duration-300"><span className="opacity-90">Sign Up</span></div></Link>
-              </> */}
+              </>)}
             </div>
         </div>
     </nav>

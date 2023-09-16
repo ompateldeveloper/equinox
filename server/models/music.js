@@ -15,9 +15,10 @@ const musicSchema = mongoose.Schema({
 }) ;
 
 
-musicSchema.statics.getAll = async function(title,artist,album,filePath){
+musicSchema.statics.getAll = async function(){
     const music = await this.find()
     console.log("getAll");
+    // console.log(music);
     return music
 }
 

@@ -1,10 +1,8 @@
 const Music = require("../models/music")
 const getAllMusic = async (req,res)=>{
     try {
-        const music = Music.getAll({})
-        if(music){
-            res.send(music)
-        }
+        const music = await Music.getAll()
+        res.status(200).json(music)
     } catch (error) {
         console.log("err");
     }
@@ -13,7 +11,7 @@ const addOneMusic = async (req,res)=>{
     let {title,artist,album,filePath} = req.body
     try {
         const music = await Music.addOne({title,artist,album,filePath})
-        res.send(music)
+        res.json(music)
     } catch (error) {
         res.status(400).json({err:error.message})
     }
