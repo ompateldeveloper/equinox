@@ -5,7 +5,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function Navbar() {
   const {user,dispatch} = useAuthContext()
-
   const handleLogout = ()=>{
         // remove user from storage
         localStorage.removeItem('user')
@@ -15,7 +14,7 @@ export default function Navbar() {
   }
   return (
     <nav>
-        <div className="p-2 flex place-items-center ">
+        <div className=" p-2 flex place-items-center transition h-20 " >
             <Link href={'/'}>
                 <div className="logo text-white p-8 font-bold text-xl">
                     <span className= "text-teal-500">EQ</span>
@@ -24,8 +23,8 @@ export default function Navbar() {
             </Link>
             
             <div className="ml-auto flex justify-between">
-             { user? (<div className="grid">
-                  <div className="text-gray-300">Logged in as <span className="text-teal-500">{user.email}</span></div>
+             { user? (<div className="grid mr-4">
+                  <div className="text-gray-300">🎧 / <span className="text-teal-500">{user.name}</span></div>
                   <div onClick={handleLogout} className="logout-btn cursor-pointer  text-gray-500 block ml-auto">Logout</div>
               </div>):
               (<>

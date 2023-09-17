@@ -12,9 +12,10 @@ const loginUser = async (req,res) => {
 
     try{
         const user = await Users.login(email,password);
-        console.log(user);
+        const username = await user.name;
+        console.log("log from loginUser static:",user);
         const token = craeteToken(user.id);
-        res.status(200).json({email,token})
+        res.status(200).json({name:username,email,token})
     }catch(err){
         res.status(400).json({err:err.message})
     }
@@ -23,12 +24,12 @@ const loginUser = async (req,res) => {
 
 const signupUser = async (req,res) => {
     // console.log(req.body);
-    const {email,password} = req.body
+    const {name,email,password} = req.body
 
     const token = craeteToken(user._id);
     try{
-        const user = await Users.signup(email,password);
-        res.status(200).json({email,token})
+        const user = await Users.signup(name,email,password);
+        res.status(200).json({name,email,token})
     }catch(err){
         res.status(400).json({err:err.message})
     }

@@ -4,6 +4,10 @@ const bcrypt = require("bcrypt");
 const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
+    name: {
+        type:String,
+        requred:true,
+    },
     email: {
         type:String,
         requred:true,
@@ -42,9 +46,12 @@ userSchema.statics.login= async function(email,password){
     
     return user
 }
-userSchema.statics.signup= async function(email,password){
+userSchema.statics.signup= async function(name,email,password){
 
     // if(!email || !password){
+        if(!name){
+            throw Error("Name cannot be empty")
+        }
         if(!email){
             if(!password){
                 throw Error("Email or password cannot be empty")
@@ -58,7 +65,6 @@ userSchema.statics.signup= async function(email,password){
 
 
     if(!validator.isEmail(email)){
-        // return 
         throw Error("Email is not valid")
     }
 
@@ -73,7 +79,7 @@ userSchema.statics.signup= async function(email,password){
     const salt = await bcrypt.genSalt(12);
     const hash = await bcrypt.hash(password,salt);
 
-    const user = await this.create({email, password: hash});
+    const user = await this.create({name, email, password: hash});
     return user
 
 }

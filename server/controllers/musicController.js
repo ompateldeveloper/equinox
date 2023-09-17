@@ -1,4 +1,5 @@
 const Music = require("../models/music")
+
 const getAllMusic = async (req,res)=>{
     try {
         const music = await Music.getAll()
