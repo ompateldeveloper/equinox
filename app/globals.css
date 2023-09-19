@@ -5,3 +5,45 @@
 body{
     background: #272727;
 }
+.active.sidebar-options{
+    @apply bg-gradient-to-l from-blue-700 to-violet-800 ;
+}
+.hidden-range{
+    -webkit-appearance: none;
+    width: 100px;
+    height: 10px;
+    opacity: 0;
+    border-radius: 5px;
+    @apply w-full absolute -translate-y-1/2 z-10;
+}
+
+/* .hidden-range::-moz-range-thumb, */
+/* .hidden-range::-ms-thumb, */
+.hidden-range::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 5px;
+    height: 30px;
+    background-color: #272727;
+    /* filter: drop-shadow(2px 2px 3px #00000021); */
+    @apply h-12 cursor-e-resize;
+}
+.equilizer-levels::-webkit-scrollbar{
+    display: none;
+}
+
+.progress-range{
+    -webkit-appearance: none;
+    opacity: 0;
+    border-radius: 5px;
+    @apply h-10 w-80 absolute top-1/2  mx-10 -translate-y-1/2 z-10;
+}
+/* .progress-range::-moz-range-thumb,
+.progress-range::-ms-thumb, */
+.progress-range::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 5px;
+    height: 30px;
+    background-color: #272727;
+    /* filter: drop-shadow(2px 2px 3px #00000021); */
+    @apply h-10 cursor-e-resize;
+}

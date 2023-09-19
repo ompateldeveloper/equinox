@@ -15,7 +15,7 @@ export default function HiddenAudioElement({ currentTrack,audioRef,handleAudioPr
     
     return (
         <div>
-            <audio ref={audioRef} onTimeUpdate={handleAudioProgress} src={currentTrack.src} controls={true}></audio>
+            <audio ref={audioRef} onTimeUpdate={handleAudioProgress} src={currentTrack.src} controls={false}></audio>
         </div>
     )
 }
