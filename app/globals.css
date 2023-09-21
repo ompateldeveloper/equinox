@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+    zoom: 1;
+}
 body{
     background: #272727;
 }
@@ -47,3 +50,45 @@ body{
     /* filter: drop-shadow(2px 2px 3px #00000021); */
     @apply h-10 cursor-e-resize;
 }
+.no-zoom {
+    zoom: 1;
+}
+.equilizer-levels {
+    display: grid;
+    grid-template-columns: repeat(10,50px);
+    @apply h-52 my-2 overflow-x-auto  ;
+}
+.input-wrapper{
+    width: 15px;
+    
+    margin: 0 auto ;
+    @apply h-52 box-border relative bg-zinc-600 rounded overflow-hidden;
+}
+.input-wrapper >input{
+    
+    @apply origin-center absolute w-52 -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 -rotate-90;
+}
+.input-wrapper >input{
+    -webkit-appearance: none;
+    opacity: 0;
+    
+    @apply  z-20;
+}
+.input-wrapper >.freq-level{
+
+    @apply w-full duration-100 transform-gpu bg-blue-500 z-10 ;
+}
+@keyframes loading {
+    0%{
+        rotate: 0;
+    }
+    100%{
+        rotate: 360deg;
+    }
+}
+
+/* .equilizer-levels *,.equilizer-levels{
+    border: 1px solid lime ;
+    outline: 1px solid red ;
+} */
+  

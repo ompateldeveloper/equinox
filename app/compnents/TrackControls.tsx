@@ -1,11 +1,15 @@
 "use client"
+
+import Hint from "./Hint"
+
 interface Props{
     isPlaying:Boolean,
     handlePlayPauseClick:any
 }
 export default function TrackControls({isPlaying,handlePlayPauseClick}:Props) {
   return (
-    <div className='track-controls flex m-4 items-center justify-center rounded-lg bg-gradient-to-br from-zinc-600 via-zinc-700 to-zinc-700 py-2 w-96 '>
+    <div className='track-controls flex m-4 items-center justify-center rounded-lg bg-gradient-to-br from-zinc-700 via-zinc-700 to-zinc-600 py-2 w-full relative overflow-hidden no-zoom'>
+        <Hint value={"Controls"}/>
 
         <div className="previous mx-2 rounded-full p-2 bg-zinc-800 text-zinc-500">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-10 0 34 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

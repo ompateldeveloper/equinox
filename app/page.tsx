@@ -1,7 +1,18 @@
 "use client";
+import {useEffect} from "react"
 import Link from "next/link";
 
 export default function Home() {
+    useEffect(() => {
+        const handleGestureStart = (e:any) => {
+          e.preventDefault();
+        };
+        document.addEventListener('gesturestart', handleGestureStart);
+    
+        return () => {
+            document.removeEventListener('gesturestart', handleGestureStart);
+        };
+      }, []);
     return (
         <div className="main">
             <div className="hero relative w-full pt-1 " style={{height:"100dvh"}}>

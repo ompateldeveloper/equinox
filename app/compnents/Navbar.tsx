@@ -17,8 +17,8 @@ export default function Navbar() {
         <div className=" p-2 flex place-items-center transition h-20 " >
             <Link href={'/'}>
                 <div className="logo text-white p-8 font-bold text-xl">
+                    Hibi
                     <span className= "text-teal-500">EQ</span>
-                    uinox
                 </div>
             </Link>
             
