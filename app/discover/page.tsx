@@ -26,12 +26,12 @@ export default function Discover() {
     useEffect(() => {
         
 
-        // if(audioProcessorRef.current ){
+        if(audioRef.current ){
 
             audioProcessorRef.current = new AudioProcessor(audioRef.current); // Replace with your actual selector
 
             audioProcessorRef.current.setPeakingFrequency(1000, 5);
-        // }
+        }
         return()=>{
             
             if(audioProcessorRef.current){
@@ -42,11 +42,11 @@ export default function Discover() {
     }, [])
 
     useEffect(() => {
-        // if(audioProcessorRef.current ){
+        if(audioProcessorRef.current ){
             
             audioProcessorRef.current.setBass(equilizer.bass/10);
             audioProcessorRef.current.setTreble(equilizer.treble/10);
-        // }
+        }
 
     },[equilizer])
     useEffect(() => {

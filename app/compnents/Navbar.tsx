@@ -16,11 +16,12 @@ export default function Navbar() {
   return (
     <nav>
         <div className=" p-2 flex place-items-center transition h-20 " >
-            <Link href={'/'}>
-                <div className="logo text-white p-8 font-bold text-xl">
+            <Link href={'/'} className="p-8 select-none">
+                <div className="logo text-white font-bold text-xl">
                     Hibi
                     <span className= "text-transparent bg-clip-text bg-gradient-to-br from-teal-500  to-violet-600 ">EQ</span>
                 </div>
+                <div className="tagline text-xs  text-zinc-100">Let it Resonate</div>
             </Link>
             
             <div className="ml-auto flex justify-between">
