@@ -2,7 +2,7 @@ import {useEffect} from 'react'
 import { useGlobalContext } from '../hooks/useGlobalContext'
 import Hint from './Hint'
 
-export default function EquilizerPanel({handleVolume}:any) {
+export default function EquilizerPanel({handleVolume,isEffect,setIsEffect}:any) {
     const {equilizer,setEquilizer,volume} = useGlobalContext()
     
     const handleRange=(e:any,property:string)=>{
@@ -12,18 +12,15 @@ export default function EquilizerPanel({handleVolume}:any) {
         setEquilizer((prev:any)=>({...prev,frequency:{[property]:e.target.value}}))
     }
 
-    useEffect(() => {
-      console.log(volume);
-      
-    
-
-    }, [volume])
+    // useEffect(() => {
+    //   console.log(volume);
+    // }, [volume])
     
     return (
         <div className='h-96 w-96 p-4 bg-gradient-to-br relative overflow-hidden from-zinc-600 via-zinc-700 to-zinc-700 rounded-lg my-4 mx-auto'>
             <Hint value={"Equilizer"}/>
             <div className="switch flex items-center  ">
-                <input type="checkbox" name="equilizer" id="equilizer" className='hidden peer/equilizer  ' />
+                <input type="checkbox" name="equilizer" id="equilizer" onClick={()=>{setIsEffect(!isEffect)}} className='hidden peer/equilizer  ' />
                 <span className="text-zinc-400 text-sm peer-checked/equilizer:text-zinc-300"> Equilizer</span>
                 <label htmlFor="equilizer" className='flex overflow-hidden items-center shadow-inner shadow-zinc-700  bg-zinc-600 rounded w-8 peer-checked/equilizer:pl-4 peer-checked/equilizer:saturate-100 saturate-0  transition-all ease-out duration-100 m-2 relative '>
                     <div className="  rounded h-4 w-4 z-10 bg-violet-500"></div>

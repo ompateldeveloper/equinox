@@ -1,4 +1,5 @@
 "use client";
+import {useEffect } from "react"
 interface currentTrackType{
     src:string,
     artist:string,
@@ -12,10 +13,17 @@ interface Props{
 }
 
 export default function HiddenAudioElement({ currentTrack,audioRef,handleAudioProgress}:any) {
+    function init(){
+        
+    }
+    useEffect(() => {
+        init()
+    
+    }, [])
     
     return (
         <div>
-            <audio ref={audioRef} onTimeUpdate={handleAudioProgress} src={currentTrack.src} controls={false}></audio>
+            <audio id="hiddenAudioElement" ref={audioRef} onTimeUpdate={handleAudioProgress} src={"sound2.mp3"} controls={false}></audio>
         </div>
     )
 }

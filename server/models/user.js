@@ -43,7 +43,7 @@ userSchema.statics.login= async function(email,password){
     if(!match){
         throw Error("Incorrect Password")
     }
-    
+    console.log("login");
     return user
 }
 userSchema.statics.signup= async function(name,email,password){
@@ -84,4 +84,4 @@ userSchema.statics.signup= async function(name,email,password){
 
 }
 
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.models.Users || mongoose.model("Users", userSchema);

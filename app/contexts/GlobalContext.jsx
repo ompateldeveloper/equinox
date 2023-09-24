@@ -6,24 +6,24 @@ export const GlobalContext = createContext()
 export const GlobalContextProvider = ({children})=>{
 
     const [progress,setProgress] = useState(40)
-    const [volume,setVolume] = useState(100)
+    const [volume,setVolume] = useState(10)
 
 
     const [equilizer,setEquilizer] = useState({
         "frequency":{
-            "band31":50,
-            "band62":50,
-            "band125":50,
-            "band250":50,
-            "band500":50,
-            "band1000":50,
-            "band2000":50,
+            "band31":90,
+            "band62":85,
+            "band125":70,
+            "band250":55,
+            "band500":45,
+            "band1000":35,
+            "band2000":40,
             "band4000":50,
-            "band8000":50,
-            "band16000":50
+            "band8000":53,
+            "band16000":70
         },
-        "bass":0,
-        "treble":0,
+        "bass":50,
+        "treble":50,
     })
 
 

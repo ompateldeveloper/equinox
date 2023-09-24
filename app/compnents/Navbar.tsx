@@ -12,13 +12,14 @@ export default function Navbar() {
         // dispatch logout action
         dispatch({ type: 'LOGOUT' })
   }
+  
   return (
     <nav>
         <div className=" p-2 flex place-items-center transition h-20 " >
             <Link href={'/'}>
                 <div className="logo text-white p-8 font-bold text-xl">
                     Hibi
-                    <span className= "text-teal-500">EQ</span>
+                    <span className= "text-transparent bg-clip-text bg-gradient-to-br from-teal-500  to-violet-600 ">EQ</span>
                 </div>
             </Link>
             

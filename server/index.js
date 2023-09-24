@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 //cors problem
 const cors = require('cors');
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ origin: ['http://localhost:3000','https://equinox-pi.vercel.app'] }));
 
 
 const requireAuth = require("./middleware/requireAuth")

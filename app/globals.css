@@ -64,19 +64,16 @@ body{
     margin: 0 auto ;
     @apply h-52 box-border relative bg-zinc-600 rounded overflow-hidden;
 }
-.input-wrapper >input{
-    
-    @apply origin-center absolute w-52 -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 -rotate-90;
-}
+
 .input-wrapper >input{
     -webkit-appearance: none;
     opacity: 0;
     
-    @apply  z-20;
+    @apply  z-20 select-none origin-center absolute w-52 -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 -rotate-90;
 }
 .input-wrapper >.freq-level{
 
-    @apply w-full duration-100 transform-gpu bg-blue-500 z-10 ;
+    @apply w-full duration-100 pointer-events-none transform-gpu bg-blue-500 z-10 ;
 }
 @keyframes loading {
     0%{
@@ -87,8 +84,5 @@ body{
     }
 }
 
-/* .equilizer-levels *,.equilizer-levels{
-    border: 1px solid lime ;
-    outline: 1px solid red ;
-} */
+
   

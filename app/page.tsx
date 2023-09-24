@@ -3,20 +3,10 @@ import {useEffect} from "react"
 import Link from "next/link";
 
 export default function Home() {
-    useEffect(() => {
-        const handleGestureStart = (e:any) => {
-          e.preventDefault();
-        };
-        document.addEventListener('gesturestart', handleGestureStart);
-    
-        return () => {
-            document.removeEventListener('gesturestart', handleGestureStart);
-        };
-      }, []);
     return (
         <div className="main">
             <div className="hero relative w-full pt-1 " style={{height:"100dvh"}}>
-                    <div className="text-8xl text-white m-16 text-transparent bg-clip-text bg-gradient-to-br from-teal-600 via-teal-300 to-teal-200 ">Enhance Your Music Experience</div>
+                    <div className="text-8xl  m-16 text-transparent bg-clip-text bg-gradient-to-br from-teal-200 via-teal-100 to-teal-100 ">Enhance Your Music Experience</div>
                     <Link href={'/discover'} className=" block w-min discover px-8 py-4 mx-auto font-extrabold  rounded-full border-2 border-teal-500 ">
                         <span className="opacity-90  text-white ">Discover</span>
                     </Link>
