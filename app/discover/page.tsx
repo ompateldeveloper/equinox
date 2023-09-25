@@ -30,7 +30,7 @@ export default function Discover() {
 
             audioProcessorRef.current = new AudioProcessor(audioRef.current); // Replace with your actual selector
 
-            audioProcessorRef.current.setPeakingFrequency(1000, 5);
+   
         }
         return()=>{
             
@@ -44,8 +44,21 @@ export default function Discover() {
     useEffect(() => {
         if(audioProcessorRef.current ){
             
-            audioProcessorRef.current.setBass(equilizer.bass/10);
-            audioProcessorRef.current.setTreble(equilizer.treble/10);
+            audioProcessorRef.current.setBass((equilizer.bass/100)*12);
+            audioProcessorRef.current.setTreble((equilizer.treble/100)*15);
+            console.log(typeof(equilizer.frequency.band31));
+            
+            audioProcessorRef.current.setPeakingFrequency(31,(parseInt(equilizer.frequency.band31)/100)*20);
+            audioProcessorRef.current.setPeakingFrequency(62,(parseInt(equilizer.frequency.band62)/100)*20);
+            audioProcessorRef.current.setPeakingFrequency(125,(parseInt(equilizer.frequency.band125)/100)*20);
+            audioProcessorRef.current.setPeakingFrequency(250,(parseInt(equilizer.frequency.band250)/100)*20);
+            audioProcessorRef.current.setPeakingFrequency(500,(parseInt(equilizer.frequency.band500)/100)*20);
+            audioProcessorRef.current.setPeakingFrequency(1000,(parseInt(equilizer.frequency.band1000)/100)*20);
+            audioProcessorRef.current.setPeakingFrequency(2000,(parseInt(equilizer.frequency.band2000)/100)*20);
+            audioProcessorRef.current.setPeakingFrequency(4000,(parseInt(equilizer.frequency.band4000)/100)*20);
+            audioProcessorRef.current.setPeakingFrequency(8000,(parseInt(equilizer.frequency.band8000)/100)*20);
+            audioProcessorRef.current.setPeakingFrequency(16000,(parseInt(equilizer.frequency.band16000)/100)*20);
+
         }
 
     },[equilizer])

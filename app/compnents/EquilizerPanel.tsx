@@ -9,7 +9,7 @@ export default function EquilizerPanel({handleVolume,isEffect,setIsEffect}:any) 
         setEquilizer((prev:any)=>({...prev,[property]:e.target.value}))
     }
     const handleBandRange=(e:any,property:string)=>{
-        setEquilizer((prev:any)=>({...prev,frequency:{[property]:e.target.value}}))
+        setEquilizer((prev:any)=>({...prev,frequency:{...prev.frequency,[property]:e.target.value}}))
     }
 
     // useEffect(() => {
