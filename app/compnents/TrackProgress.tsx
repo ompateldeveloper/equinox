@@ -26,15 +26,15 @@ export default function TrackProgress({handleRange,rangeRef,}:any) {
             {rangeRef.current && <div className="track-progress-inner w-80 rounded overflow-hidden h-10 z-9 relative  ">
                 <div className=" flex items-center h-full duration-100  peer/progress overflow-hidden absolute" style={{width:rangeRef?.current?.value/10+"%"}}>
                 {
-                   randomArray?.map((val:any)=>{
-                        return<div className="line shrink-0 self-center bg-zinc-500 rounded " style={{height:val+"px",width:"6px",marginLeft:2}}></div>
+                   randomArray?.map((val:any,index)=>{
+                        return<div key={index} className="line shrink-0 self-center bg-zinc-500 rounded " style={{height:val+"px",width:"6px",marginLeft:2}}></div>
                     })
                 }
                 </div>
                 <div className="div flex items-center h-full overflow-hidden">
                 {
-                   randomArray?.map((val)=>{
-                        return<div className="line bg-white rounded" style={{height:val+"px",width:"6px",marginLeft:2}}></div>
+                   randomArray?.map((val,index)=>{
+                        return<div key={index} className="line bg-white rounded" style={{height:val+"px",width:"6px",marginLeft:2}}></div>
                     })
                 }
                 </div>
