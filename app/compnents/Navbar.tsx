@@ -1,10 +1,13 @@
 "use client";
 import Link from "next/link";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useGlobalContext } from "../hooks/useGlobalContext";
 
 
 export default function Navbar() {
   const {user,dispatch} = useAuthContext()
+  const {navCollapse,setNavCollapse} = useGlobalContext()
+
   const handleLogout = ()=>{
         // remove user from storage
         localStorage.removeItem('user')
@@ -15,7 +18,7 @@ export default function Navbar() {
   
   return (
     <nav>
-        <div className=" p-2 flex place-items-center transition h-20 " >
+        {!navCollapse && <div className=" p-2 flex place-items-center transition h-20 " >
             <Link href={'/'} className="p-8 select-none">
                 <div className="logo text-white font-bold text-xl">
                     Hibi
@@ -34,7 +37,7 @@ export default function Navbar() {
               <Link href={"/signup"}><div className="signup-btn h-10 m-1 align-middle px-4 py-2 rounded-lg text-white hover:text-teal-400 ease-in-out duration-300"><span className="opacity-90">Sign Up</span></div></Link>
               </>)}
             </div>
-        </div>
+        </div>}
     </nav>
   )
 }

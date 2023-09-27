@@ -1,12 +1,13 @@
 "use client";
-import { createContext,useState,useRef } from 'react'
+import { createContext,useState, useEffect } from 'react'
 
 export const GlobalContext = createContext()
 
 export const GlobalContextProvider = ({children})=>{
 
-    const [progress,setProgress] = useState(40)
+    const [progress,setProgress] = useState(0)
     const [volume,setVolume] = useState(10)
+    const [navCollapse,setNavCollapse] = useState(false)
 
 
     const [equilizer,setEquilizer] = useState({
@@ -29,7 +30,7 @@ export const GlobalContextProvider = ({children})=>{
 
 
     return(
-        <GlobalContext.Provider value={{progress,setProgress,equilizer,setEquilizer,volume,setVolume}}>
+        <GlobalContext.Provider value={{progress,setProgress,equilizer,setEquilizer,volume,setVolume,navCollapse,setNavCollapse}}>
             {children}
         </GlobalContext.Provider>
     )

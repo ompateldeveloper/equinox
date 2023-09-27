@@ -20,18 +20,14 @@ export default function Discover() {
     const [isEffect,setIsEffect]= useState(false);
 
     const audioProcessorRef = useRef<AudioProcessor>()
-    // Set bass and treble
     
-    // Set peaking frequency
+
     useEffect(() => {
         
 
         if(audioRef.current ){
-
-            audioProcessorRef.current = new AudioProcessor(audioRef.current); // Replace with your actual selector
-
-   
-        }
+            audioProcessorRef.current = new AudioProcessor(audioRef.current); 
+        } 
         return()=>{
             
             if(audioProcessorRef.current){
@@ -43,11 +39,8 @@ export default function Discover() {
 
     useEffect(() => {
         if(audioProcessorRef.current ){
-            
             audioProcessorRef.current.setBass((equilizer.bass/100)*12);
-            audioProcessorRef.current.setTreble((equilizer.treble/100)*15);
-            console.log(typeof(equilizer.frequency.band31));
-             
+            audioProcessorRef.current.setTreble((equilizer.treble/100)*15);             
             audioProcessorRef.current.setPeakingFrequency(31,(parseInt(equilizer.frequency.band31)/100)*20);
             audioProcessorRef.current.setPeakingFrequency(62,(parseInt(equilizer.frequency.band62)/100)*20);
             audioProcessorRef.current.setPeakingFrequency(125,(parseInt(equilizer.frequency.band125)/100)*20);
@@ -60,8 +53,10 @@ export default function Discover() {
             audioProcessorRef.current.setPeakingFrequency(16000,(parseInt(equilizer.frequency.band16000)/100)*20);
 
         }
-
     },[equilizer])
+
+
+
     useEffect(() => {
         if(audioProcessorRef.current) audioProcessorRef.current.resume()
     },[isPlaying])
@@ -73,7 +68,9 @@ export default function Discover() {
         // src:"https://firebasestorage.googleapis.com/v0/b/equinox-abb58.appspot.com/o/music%2FMoon%20Halo%20(feat.%20%E8%8C%B6%E7%90%86%E7%90%86%2C%20TetraCalyx%2C%20Hanser)%20(Honkai%20Impact%203Rd%20'Everlasting%20Fl.m4a?alt=media&token=24ef49ae-f056-474d-8663-a4519c3550ed", //moon halo
         // src:"sound2.mp3", // play-unity
         // src:"sound.m4a", // moon halo
-        src:"orange.m4a", // koruru
+        // src:"orange.m4a", // koruru
+        src:"Kimi ni Todoke Season 2 Opening_256k.mp3", //given name
+        // src:"Sawano Hiroyuki - aLIEz Aldnoah.Zero Full Lyrics.m4a", //given name
         artist:"",
         album:""
     }
@@ -89,12 +86,16 @@ export default function Discover() {
             if(rangeRef.current){
                 rangeRef.current.value = progressPercentage.toString();
             }
+            if(currentTime == audioDuration){
+                setProgress(0)
+            }
         }
     }
 
     const trackEnds= ()=>{
         if(audioRef.current?.paused){
             setIsPlaying(false)
+            setProgress(0)
         }
     }
 
@@ -143,15 +144,16 @@ export default function Discover() {
 
 
     return (
-        <div className="discover flex flex-wrap px-5 relative ">
+        <div className="discover flex mb-20 relative ">
             {/* <Sidebar/> */}
             {/* <div className="flex flex-wrap "> */}
+            <div className="m-4">
                 <Visualizer/>
-                <TrackProgress rangeRef={rangeRef} handleRange={handleRange}  />
-                <EquilizerPanel isEffect setIsEffect={setIsEffect} handleVolume={handleVolume} />
-                {/* <Loading/> */}
-                <TrackControls isPlaying={isPlaying} handlePlayPauseClick={handlePlayPauseClick}  />
-                <HiddenAudioElement currentTrack={currentTrack} audioRef={audioRef} handleAudioProgress={handleAudioProgress} />
+                <TrackProgress rangeRef={rangeRef} handleRange={handleRange} />
+            </div>
+            <EquilizerPanel isEffect setIsEffect={setIsEffect} handleVolume={handleVolume} />
+            <TrackControls isPlaying={isPlaying} handlePlayPauseClick={handlePlayPauseClick}  />
+            <HiddenAudioElement currentTrack={currentTrack} audioRef={audioRef} handleAudioProgress={handleAudioProgress} />
             {/* </div>  */}
         </div>
     )

@@ -9,7 +9,7 @@ export default function EquilizerPanel({handleVolume,isEffect,setIsEffect}:any) 
         setEquilizer((prev:any)=>({...prev,[property]:e.target.value}))
     }
     const handleBandRange=(e:any,property:string)=>{
-        setEquilizer((prev:any)=>({...prev,frequency:{...prev.frequency,[property]:e.target.value}}))
+        setEquilizer((prev:any)=>({...prev,frequency:{...prev.frequency,[property]:parseInt(e.target.value)}}))
     }
 
     // useEffect(() => {
@@ -17,8 +17,8 @@ export default function EquilizerPanel({handleVolume,isEffect,setIsEffect}:any) 
     // }, [volume])
     
     return (
-        <div className='h-96 w-96 p-4 bg-gradient-to-br relative overflow-hidden from-zinc-600 via-zinc-700 to-zinc-700 rounded-lg my-4 mx-auto'>
-            <Hint value={"Equilizer"}/>
+        <div className='equilizer-panel h-96 w-96 p-4  bg-gradient-to-br relative overflow-hidden from-zinc-600 via-zinc-700 to-zinc-700 rounded-lg my-4 mx-auto'>
+            {/* <Hint value={"Equilizer"}/> */}
             <div className="switch flex items-center  ">
                 <input type="checkbox" name="equilizer" id="equilizer" onClick={()=>{setIsEffect(!isEffect)}} className='hidden peer/equilizer  ' />
                 <span className="text-zinc-400 text-sm peer-checked/equilizer:text-zinc-300"> Equilizer</span>

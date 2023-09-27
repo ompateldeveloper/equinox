@@ -8,9 +8,37 @@
 body{
     background: #272727;
 }
+.discover{
+    /* display: flex;
+    flex-wrap: wrap; */
+}
+.visualizer{
+
+}
+.equilizer-panel{
+
+}
+.track-controls{
+
+}
+
+
+
+
+
 .active.sidebar-options{
     @apply bg-gradient-to-l from-blue-700 to-violet-800 ;
 }
+
+
+.resizable {
+    min-height: min-content;
+    min-width: min-content;
+    resize: both;
+    overflow: auto;
+    max-height: fit-content;
+    max-width: fit-content;
+  }
 .hidden-range{
     -webkit-appearance: none;
     width: 100px;

@@ -8,7 +8,7 @@ interface Props{
 }
 export default function TrackControls({isPlaying,handlePlayPauseClick}:Props) {
   return (
-    <div className='track-controls flex m-4 items-center justify-center rounded-lg bg-gradient-to-br from-zinc-700 via-zinc-700 to-zinc-600 py-2 w-full relative overflow-hidden no-zoom'>
+    <div className='track-controls fixed bottom-2 left-2 flex py-2  w-[calc(100%-16px)] items-center justify-center rounded-lg bg-gradient-to-br from-zinc-700 via-zinc-700 to-zinc-600  overflow-hidden ' >
         <Hint value={"Controls"}/>
 
         <div className="previous mx-2 rounded-full p-2 bg-zinc-800 text-zinc-500">

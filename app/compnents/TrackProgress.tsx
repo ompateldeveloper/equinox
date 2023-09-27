@@ -1,21 +1,46 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { useGlobalContext } from "../hooks/useGlobalContext"
 import Hint from "./Hint"
 
-export default function TrackProgress({handleRange,rangeRef}:any) {
+export default function TrackProgress({handleRange,rangeRef,}:any) {
     const {setProgress,progress} = useGlobalContext()
-
+    const [randomArray,setRandomArray] = useState()
+    useEffect(()=>{ 
+        function generateRandomArray(){
+            let randomArray= []
+            for (let i=0 ;i<40; i++ ){
+                let random =Math.random() * (40 - 10) + 10
+                randomArray.push(random)
+    
+            }
+            return randomArray
+        }
+        const ra = generateRandomArray()
+        setRandomArray(ra)
+    },[])
 
     return (
-        <div className='track-progress2 px-4 py-8 w-96 m-auto bg-zinc-700 flex items-center h-min justify-center rounded-lg relative overflow-hidden '>
-            <Hint value={"Progress"}/>
-            <div className="track-progress w-full rounded overflow-hidden h-10 z-9 bg-zinc-600   ">
-                {/* <div className="progress-inner w-full absolute bg-white h-full origin-center translate-x-1/2 " style={{}}></div> */}
-                { rangeRef.current && <div className="bg-white h-full duration-100 peer/progress " style={{width:rangeRef?.current?.value/10+"%"}}></div>}
-            </div>
+        <div className='track-progress px-4 py-8 w-96 m-auto bg-zinc-700 flex items-center h-min justify-center rounded-lg relative overflow-hiden '>
+            {rangeRef.current && <div className="track-progress-inner w-80 rounded overflow-hidden h-10 z-9 relative  ">
+                <div className=" flex items-center h-full duration-100  peer/progress overflow-hidden absolute" style={{width:rangeRef?.current?.value/10+"%"}}>
+                {
+                   randomArray?.map((val:any)=>{
+                        return<div className="line shrink-0 self-center bg-zinc-500 rounded " style={{height:val+"px",width:"6px",marginLeft:2}}></div>
+                    })
+                }
+                </div>
+                <div className="div flex items-center h-full overflow-hidden">
+                {
+                   randomArray?.map((val)=>{
+                        return<div className="line bg-white rounded" style={{height:val+"px",width:"6px",marginLeft:2}}></div>
+                    })
+                }
+                </div>
+            </div>}
             
-            {/* <div className="progress-pointer w-2 h-12 bg-blue-400 absolute translate-x-1/2 origin-center "></div> */}
+            {/* <Hint value={"Progress"}/> */}
             <input type="range" ref={rangeRef} name="" defaultValue='0' id="" min="0" max="1000" onChange={handleRange} onMouseUp={(e)=>{console.log(e)}} className="progress-range "></input>
         </div>
             
