@@ -11,26 +11,23 @@ export const GlobalContextProvider = ({children})=>{
 
 
     const [equilizer,setEquilizer] = useState({
-        "frequency":{
-            "band31":90,
-            "band62":85,
-            "band125":70,
-            "band250":55,
-            "band500":45,
-            "band1000":35,
-            "band2000":40,
-            "band4000":50,
-            "band8000":53,
-            "band16000":70
-        },
-        "bass":50,
-        "treble":50,
+        "band31":90,
+        "band62":85,
+        "band125":70,
+        "band250":55,
+        "band500":45,
+        "band1000":35,
+        "band2000":40,
+        "band4000":50,
+        "band8000":53,
+        "band16000":70
     })
-
+    const [bass,setBass] = useState(50)
+    const [treble,setTreble] = useState(50)
 
 
     return(
-        <GlobalContext.Provider value={{progress,setProgress,equilizer,setEquilizer,volume,setVolume,navCollapse,setNavCollapse}}>
+        <GlobalContext.Provider value={{progress,setProgress,equilizer,setEquilizer,bass,setBass,treble,setTreble,volume,setVolume,navCollapse,setNavCollapse}}>
             {children}
         </GlobalContext.Provider>
     )

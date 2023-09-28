@@ -15,45 +15,32 @@ import AudioProcessor from '../../lib/AudioProcessor';
 export default function Discover() {
     const audioRef = useRef<HTMLAudioElement>(null);
     const rangeRef = useRef<HTMLInputElement>(null);
-    const {setProgress,progress,setVolume,volume,equilizer} = useGlobalContext()
+    const {setProgress,progress,setVolume,volume,equilizer,bass,treble} = useGlobalContext()
     const [isPlaying,setIsPlaying]= useState(false);
     const [isEffect,setIsEffect]= useState(false);
 
-    const audioProcessorRef = useRef<AudioProcessor>()
+    const audioProcessorRef = useRef<AudioProcessor | undefined>()
     
 
+    // audioref initialization and disposal
     useEffect(() => {
-        
-
         if(audioRef.current ){
-            audioProcessorRef.current = new AudioProcessor(audioRef.current); 
+            audioProcessorRef.current = new AudioProcessor(audioRef.current);   
         } 
-        return()=>{
-            
-            if(audioProcessorRef.current){
-                audioProcessorRef.current.dispose()
-            }
+        return()=>{  
+            audioProcessorRef?.current?.dispose()
         }
-
     }, [])
 
+
+    // this effect is so obvious and in change in any equilizer value can lead to
     useEffect(() => {
         if(audioProcessorRef.current ){
-            audioProcessorRef.current.setBass((equilizer.bass/100)*12);
-            audioProcessorRef.current.setTreble((equilizer.treble/100)*15);             
-            audioProcessorRef.current.setPeakingFrequency(31,(parseInt(equilizer.frequency.band31)/100)*20);
-            audioProcessorRef.current.setPeakingFrequency(62,(parseInt(equilizer.frequency.band62)/100)*20);
-            audioProcessorRef.current.setPeakingFrequency(125,(parseInt(equilizer.frequency.band125)/100)*20);
-            audioProcessorRef.current.setPeakingFrequency(250,(parseInt(equilizer.frequency.band250)/100)*20);
-            audioProcessorRef.current.setPeakingFrequency(500,(parseInt(equilizer.frequency.band500)/100)*20);
-            audioProcessorRef.current.setPeakingFrequency(1000,(parseInt(equilizer.frequency.band1000)/100)*20);
-            audioProcessorRef.current.setPeakingFrequency(2000,(parseInt(equilizer.frequency.band2000)/100)*20);
-            audioProcessorRef.current.setPeakingFrequency(4000,(parseInt(equilizer.frequency.band4000)/100)*20);
-            audioProcessorRef.current.setPeakingFrequency(8000,(parseInt(equilizer.frequency.band8000)/100)*20);
-            audioProcessorRef.current.setPeakingFrequency(16000,(parseInt(equilizer.frequency.band16000)/100)*20);
-
+            audioProcessorRef.current.setBass((bass/100)*12);
+            audioProcessorRef.current.setTreble((treble/100)*12);   
+            audioProcessorRef.current.setPeakingFilters(equilizer);
         }
-    },[equilizer])
+    },[equilizer,bass,treble])
 
 
 
@@ -69,16 +56,14 @@ export default function Discover() {
         // src:"sound2.mp3", // play-unity
         // src:"sound.m4a", // moon halo
         // src:"orange.m4a", // koruru
-        src:"Kimi ni Todoke Season 2 Opening_256k.mp3", //given name
-        // src:"Sawano Hiroyuki - aLIEz Aldnoah.Zero Full Lyrics.m4a", //given name
+        // src:"Kimi ni Todoke Season 2 Opening_256k.mp3", //given name
+        src:"Sawano Hiroyuki - aLIEz Aldnoah.Zero Full Lyrics.m4a", //given name
         artist:"",
         album:""
     }
 
     const handleAudioProgress = ()=>{
-        
-        if(audioRef.current){
-            
+        if(audioRef.current){  
             const audioDuration = audioRef.current.duration;
             const currentTime = audioRef.current.currentTime;
             let progressPercentage = (currentTime / audioDuration) * 1000;
@@ -106,18 +91,15 @@ export default function Discover() {
         }
     }
 
-    const handleVolume = (e:any)=>{
-        setVolume(e.target.value)
-    }
+
 
     useEffect(() => {
         onVolumeChange()
     },[volume])
+
+
     useEffect(() => {
         trackEnds()
-      return () => {
-        
-      }
     }, [progress])
     
     const handleRange = (e:any)=>{
@@ -127,7 +109,7 @@ export default function Discover() {
             const audioDuration = audioRef.current.duration;
             const desiredTime = (rangeValue / 1000) * audioDuration;
             audioRef.current.currentTime = desiredTime;
-            setProgress(desiredTime)
+            setProgress(desiredTime) 
         }
     }
 
@@ -144,14 +126,14 @@ export default function Discover() {
 
 
     return (
-        <div className="discover flex mb-20 relative ">
+        <div className="discover flex flex-wrap mb-20 relative ">
             {/* <Sidebar/> */}
             {/* <div className="flex flex-wrap "> */}
             <div className="m-4">
                 <Visualizer/>
                 <TrackProgress rangeRef={rangeRef} handleRange={handleRange} />
             </div>
-            <EquilizerPanel isEffect setIsEffect={setIsEffect} handleVolume={handleVolume} />
+            <EquilizerPanel isEffect setIsEffect={setIsEffect}  />
             <TrackControls isPlaying={isPlaying} handlePlayPauseClick={handlePlayPauseClick}  />
             <HiddenAudioElement currentTrack={currentTrack} audioRef={audioRef} handleAudioProgress={handleAudioProgress} />
             {/* </div>  */}

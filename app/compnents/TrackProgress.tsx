@@ -24,6 +24,8 @@ export default function TrackProgress({handleRange,rangeRef,}:any) {
     return (
         <div className='track-progress px-4 py-8 w-96 m-auto bg-zinc-700 flex items-center h-min justify-center rounded-lg relative overflow-hiden '>
             {rangeRef.current && <div className="track-progress-inner w-80 rounded overflow-hidden h-10 z-9 relative  ">
+                <div className="current-time">{}</div>
+                <div className="duration">{}</div>
                 <div className=" flex items-center h-full duration-100  peer/progress overflow-hidden absolute" style={{width:rangeRef?.current?.value/10+"%"}}>
                 {
                    randomArray?.map((val:any,index)=>{
