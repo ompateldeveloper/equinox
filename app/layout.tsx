@@ -1,11 +1,8 @@
-import Navbar from '@/app/compnents/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import {AuthContextProvider} from "./contexts/AuthContext"
 import {  GlobalContextProvider } from './contexts/GlobalContext'
-import Head from 'next/head'
-import { useGlobalContext } from './hooks/useGlobalContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -26,7 +23,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthContextProvider >
           <GlobalContextProvider>
-          <Navbar/>
           {children}
           </GlobalContextProvider>
         </AuthContextProvider>

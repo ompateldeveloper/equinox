@@ -3,13 +3,10 @@ import {useEffect,useState,useRef} from 'react'
 
 
 import HiddenAudioElement from "../compnents/HiddenAudioElement";
-import Sidebar from "../compnents/Sidebar";
 import TrackControls from "../compnents/TrackControls";
 import EquilizerPanel from "../compnents/EquilizerPanel";
 import TrackProgress from "../compnents/TrackProgress";
-import Visualizer from "../compnents/Visualizer";
 import { useGlobalContext } from '../hooks/useGlobalContext';
-import Loading from '../compnents/Loading';
 import AudioProcessor from '../../lib/AudioProcessor';
 
 export default function Discover() {
@@ -104,7 +101,6 @@ export default function Discover() {
     
     const handleRange = (e:any)=>{
         if(audioRef.current){
-            console.log(e.target.onmousedown)
             let rangeValue = parseFloat(e.target.value);
             const audioDuration = audioRef.current.duration;
             const desiredTime = (rangeValue / 1000) * audioDuration;
@@ -127,16 +123,10 @@ export default function Discover() {
 
     return (
         <div className="discover flex flex-wrap mb-20 relative ">
-            {/* <Sidebar/> */}
-            {/* <div className="flex flex-wrap "> */}
-            <div className="m-4">
-                <Visualizer/>
-                <TrackProgress rangeRef={rangeRef} handleRange={handleRange} />
-            </div>
-            <EquilizerPanel isEffect setIsEffect={setIsEffect}  />
+            <TrackProgress rangeRef={rangeRef} handleRange={handleRange} />
+            <EquilizerPanel isEffec={isEffect} setIsEffect={setIsEffect}  />
             <TrackControls isPlaying={isPlaying} handlePlayPauseClick={handlePlayPauseClick}  />
             <HiddenAudioElement currentTrack={currentTrack} audioRef={audioRef} handleAudioProgress={handleAudioProgress} />
-            {/* </div>  */}
         </div>
     )
 }

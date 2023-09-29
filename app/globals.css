@@ -51,6 +51,14 @@ body{
 }
 .equilizer-levels::-webkit-scrollbar{
     display: none;
+    visibility: none;
+}
+.tabs{
+    /* scrollbar-width: none; */
+
+}
+.tabs::-webkit-scrollbar{
+    display: none;
 }
 
 .progress-range{
@@ -75,24 +83,24 @@ body{
 .equilizer-levels {
     display: grid;
     grid-template-columns: repeat(10,50px);
+    /* scrollbar-width: none; */
     @apply h-52 my-2 overflow-x-auto  ;
 }
 .input-wrapper{
-    width: 15px;
-    
+    width: 16px;
     margin: 0 auto ;
-    @apply h-52 box-border relative bg-zinc-600 rounded overflow-hidden;
+    @apply h-52 box-border relative bg-zinc-600 rounded overflow-hidden flex items-end justify-center ml-5 after:absolute after:text-xs after:-rotate-90 after:text-start after:bottom-0 after:left-2 after:origin-left after:mix-blend-overlay after:text-gray-200    ;
 }
 
 .input-wrapper >input{
     -webkit-appearance: none;
     opacity: 0;
     
-    @apply  z-20 select-none origin-center absolute w-52 -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 -rotate-90;
+    @apply  z-10 select-none origin-center absolute w-52 -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 -rotate-90;
 }
 .input-wrapper >.freq-level{
 
-    @apply w-full duration-100 pointer-events-none transform-gpu bg-blue-500 z-10 ;
+    @apply w-full duration-100 pointer-events-none flex items-start transform-gpu bg-blue-500  ;
 }
 @keyframes loading {
     0%{
@@ -104,4 +112,6 @@ body{
 }
 
 
-  
+.tab.active{
+    @apply bg-zinc-600 ;
+}

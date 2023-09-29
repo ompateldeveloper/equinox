@@ -1,10 +1,12 @@
 "use client";
 import {useEffect} from "react"
 import Link from "next/link";
+import Navbar from "./compnents/Navbar";
 
 export default function Home() {
     return (
         <div className="main">
+          <Navbar/>
             <div className="hero relative w-full pt-1 " style={{height:"100dvh"}}>
                     <div className="text-8xl  m-16 text-transparent bg-clip-text bg-gradient-to-br from-teal-200 via-teal-100 to-teal-100 ">Enhance Your Music Experience</div>
                     <Link href={'/discover'} className=" block w-min discover px-8 py-4 mx-auto font-extrabold  rounded-full border-2 border-teal-500 ">
