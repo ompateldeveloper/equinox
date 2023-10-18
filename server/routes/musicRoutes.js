@@ -1,5 +1,5 @@
 const express = require("express");
-musicRouter = express.Router();
+const  musicRouter = express.Router();
 
 const { getAllMusic,addOneMusic } = require("../controllers/musicController");
 

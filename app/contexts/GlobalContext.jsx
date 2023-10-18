@@ -1,13 +1,16 @@
 "use client";
-import { createContext,useState, useEffect } from 'react'
+import { createContext,useState, useEffect, useRef } from 'react'
 
 export const GlobalContext = createContext()
 
 export const GlobalContextProvider = ({children})=>{
-
+    const audioRef = useRef<HTMLAudioElement>(null);
+    const rangeRef = useRef<HTMLInputElement>(null);
     const [progress,setProgress] = useState(0)
     const [volume,setVolume] = useState(10)
     const [navCollapse,setNavCollapse] = useState(false)
+    const [isPlaying,setIsPlaying]= useState(false);
+    const [isEffect,setIsEffect]= useState(false);
 
 
     const [equilizer,setEquilizer] = useState({
@@ -26,8 +29,10 @@ export const GlobalContextProvider = ({children})=>{
     const [treble,setTreble] = useState(50)
 
 
+    
+
     return(
-        <GlobalContext.Provider value={{progress,setProgress,equilizer,setEquilizer,bass,setBass,treble,setTreble,volume,setVolume,navCollapse,setNavCollapse}}>
+        <GlobalContext.Provider value={{audioRef,rangeRef,progress,setProgress,equilizer,setEquilizer,bass,setBass,treble,setTreble,volume,setVolume,navCollapse,setNavCollapse,isPlaying,setIsPlaying,isEffect,setIsEffect}}>
             {children}
         </GlobalContext.Provider>
     )

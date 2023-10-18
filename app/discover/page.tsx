@@ -12,9 +12,7 @@ import AudioProcessor from '../../lib/AudioProcessor';
 export default function Discover() {
     const audioRef = useRef<HTMLAudioElement>(null);
     const rangeRef = useRef<HTMLInputElement>(null);
-    const {setProgress,progress,setVolume,volume,equilizer,bass,treble} = useGlobalContext()
-    const [isPlaying,setIsPlaying]= useState(false);
-    const [isEffect,setIsEffect]= useState(false);
+    const {setProgress,progress,setVolume,volume,equilizer,bass,treble,isPlaying,setIsPlaying} = useGlobalContext()
 
     const audioProcessorRef = useRef<AudioProcessor | undefined>()
     
@@ -54,7 +52,8 @@ export default function Discover() {
         // src:"sound.m4a", // moon halo
         // src:"orange.m4a", // koruru
         // src:"Kimi ni Todoke Season 2 Opening_256k.mp3", //given name
-        src:"Sawano Hiroyuki - aLIEz Aldnoah.Zero Full Lyrics.m4a", //given name
+        // src:"Sawano Hiroyuki - aLIEz Aldnoah.Zero Full Lyrics.m4a", //given name
+        src:"SnapInsta.io - VØJ & Narvent — Memory Reboot [ sped up __ nightcore ] ˖ ࣪ ‹ 𖥔 (320 kbps).mp3", //given name
         artist:"",
         album:""
     }
@@ -123,9 +122,9 @@ export default function Discover() {
 
     return (
         <div className="discover flex flex-wrap mb-20 relative ">
+            <EquilizerPanel/>
             <TrackProgress rangeRef={rangeRef} handleRange={handleRange} />
-            <EquilizerPanel isEffec={isEffect} setIsEffect={setIsEffect}  />
-            <TrackControls isPlaying={isPlaying} handlePlayPauseClick={handlePlayPauseClick}  />
+            <TrackControls  handlePlayPauseClick={handlePlayPauseClick} rangeRef={rangeRef} handleRange={handleRange}  />
             <HiddenAudioElement currentTrack={currentTrack} audioRef={audioRef} handleAudioProgress={handleAudioProgress} />
         </div>
     )

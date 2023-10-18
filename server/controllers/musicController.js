@@ -9,6 +9,7 @@ const getAllMusic = async (req,res)=>{
     }
 }
 const addOneMusic = async (req,res)=>{
+    console.log(req.body);
     let {title,artist,album,filePath} = req.body
     try {
         const music = await Music.addOne({title,artist,album,filePath})
