@@ -17,7 +17,7 @@ export default function TrackList() {
                 "moon halo",
                 "orange koruru remix"
                 ].map((data,index)=>(
-                    <TrackElement index={index} data={data}/>
+                    <TrackElement index={index} key={index} data={data}/>
                 ))
             }
             </div>        
