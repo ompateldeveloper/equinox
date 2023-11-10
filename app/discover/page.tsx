@@ -8,6 +8,7 @@ import EquilizerPanel from "../compnents/EquilizerPanel";
 import TrackProgress from "../compnents/TrackProgress";
 import { useGlobalContext } from '../hooks/useGlobalContext';
 import AudioProcessor from '../../lib/AudioProcessor';
+import TrackList from '../compnents/TrackList';
 
 export default function Discover() {
     const audioRef = useRef<HTMLAudioElement>(null);
@@ -49,11 +50,11 @@ export default function Discover() {
         // src:"https://firebasestorage.googleapis.com/v0/b/equinox-abb58.appspot.com/o/music%2FOshi%20no%20Ko%20Ending%20(4K%2060FPS)%20Creditless_256k.mp3?alt=media&token=ba47c5fe-d827-48dd-a947-d08f4af62541", // oshinoko op
         // src:"https://firebasestorage.googleapis.com/v0/b/equinox-abb58.appspot.com/o/music%2FMoon%20Halo%20(feat.%20%E8%8C%B6%E7%90%86%E7%90%86%2C%20TetraCalyx%2C%20Hanser)%20(Honkai%20Impact%203Rd%20'Everlasting%20Fl.m4a?alt=media&token=24ef49ae-f056-474d-8663-a4519c3550ed", //moon halo
         // src:"sound2.mp3", // play-unity
-        // src:"sound.m4a", // moon halo
+        src:"sound.m4a", // moon halo
         // src:"orange.m4a", // koruru
         // src:"Kimi ni Todoke Season 2 Opening_256k.mp3", //given name
         // src:"Sawano Hiroyuki - aLIEz Aldnoah.Zero Full Lyrics.m4a", //given name
-        src:"SnapInsta.io - VØJ & Narvent — Memory Reboot [ sped up __ nightcore ] ˖ ࣪ ‹ 𖥔 (320 kbps).mp3", //given name
+        // src:"SnapInsta.io - VØJ & Narvent — Memory Reboot [ sped up __ nightcore ] ˖ ࣪ ‹ 𖥔 (320 kbps).mp3", //given name
         artist:"",
         album:""
     }
@@ -79,24 +80,22 @@ export default function Discover() {
             setProgress(0)
         }
     }
+    useEffect(() => {
+        trackEnds()
+    }, [progress])
 
+    
     const onVolumeChange = () => {
         if(audioRef.current){
             audioRef.current.volume = volume / 100
-
         }
     }
-
-
-
     useEffect(() => {
         onVolumeChange()
     },[volume])
 
 
-    useEffect(() => {
-        trackEnds()
-    }, [progress])
+
     
     const handleRange = (e:any)=>{
         if(audioRef.current){
@@ -122,8 +121,9 @@ export default function Discover() {
 
     return (
         <div className="discover flex flex-wrap mb-20 relative ">
-            <EquilizerPanel/>
-            <TrackProgress rangeRef={rangeRef} handleRange={handleRange} />
+            {/* <EquilizerPanel/> */}
+            <TrackList/>
+            {/* <TrackProgress rangeRef={rangeRef} handleRange={handleRange} /> */}
             <TrackControls  handlePlayPauseClick={handlePlayPauseClick} rangeRef={rangeRef} handleRange={handleRange}  />
             <HiddenAudioElement currentTrack={currentTrack} audioRef={audioRef} handleAudioProgress={handleAudioProgress} />
         </div>

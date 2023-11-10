@@ -1,9 +1,10 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-// import * as bcrypt from 'bcrypt'
-const validator = require('validator');
+// const mongoose = require("mongoose");
+import mongoose,{ Schema } from "mongoose";
+// const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt"
+import * as validator from 'validator';
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     name: {
         type:String,
         requred:true,

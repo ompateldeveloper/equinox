@@ -1,4 +1,3 @@
-const user = require('../models/user');
 const Users = require('../models/user');
 const jwt = require('jsonwebtoken');
 
@@ -8,8 +7,6 @@ function craeteToken(id){
 
 const loginUser = async (req,res) => {
     const {email,password} = req.body
-
-
     try{
         const user = await Users.login(email,password);
         const username = await user.name;
@@ -26,7 +23,7 @@ const signupUser = async (req,res) => {
     // console.log(req.body);
     const {name,email,password} = req.body
 
-    const token = craeteToken(user._id);
+    const token = craeteToken(Users._id);
     try{
         const user = await Users.signup(name,email,password);
         res.status(200).json({name,email,token})
@@ -35,4 +32,4 @@ const signupUser = async (req,res) => {
     }
 }
 
-module.exports = {loginUser,signupUser};
+export {loginUser,signupUser};

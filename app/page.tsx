@@ -1,7 +1,7 @@
 "use client";
 import {useEffect} from "react"
 import Link from "next/link";
-import Navbar from "./compnents/Navbar";
+import Navbar from "./(auth)/Navbar";
 
 export default function Home() {
     return (

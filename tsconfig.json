@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/userlogin.ts", "app/api/login/route.jsx", "lib/AudioProcessor.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/userlogin.ts", "app/api/(authAPI)/login/route.jsx", "lib/AudioProcessor.js", "app/api/(musicAPI)/music/addone/route.jsx", "app/api/route.js"],
   "exclude": ["node_modules"]
 }

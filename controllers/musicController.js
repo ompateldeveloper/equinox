@@ -1,4 +1,4 @@
-const Music = require("../models/music")
+const Music = require("../models/music.js")
 
 const getAllMusic = async (req,res)=>{
     try {

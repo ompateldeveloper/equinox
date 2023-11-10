@@ -1,16 +1,13 @@
 import Link from "next/link";
+import Sidebar from "./Sidebar";
 
 export default function TrackList() {
     return (
-        <div className=" w-96 m-4 rounded-lg">
-            <nav className="mt-2 flex">
-                <div className="tabs flex overflow-x-auto w-80">
-                    <Link href={"/allsongs"} className="tab mx-2 my-1  px-2 py-1 whitespace-nowrap text-zinc-300 rounded active">All Songs</Link>
-                    <Link href={"/recent"} className="tab mx-2 my-1 px-2 py-1 whitespace-nowrap text-zinc-300 rounded">Recently Added</Link>
-                    <Link href={"/playlists"} className="tab mx-2 my-1  px-2 py-1 whitespace-nowrap text-zinc-300 rounded">Playlists</Link>
-                    <Link href={"/Queue"} className="tab mx-2 my-1  px-2 py-1 whitespace-nowrap text-zinc-300 rounded">Queue</Link>
-                </div>
-            </nav>    
+        <div className="flex w-full">
+
+        <Sidebar/>
+        <div className="w-full p-4 rounded-lg ">
+          
             <div className="list overflow-y-auto">
             {
                 [
@@ -19,14 +16,26 @@ export default function TrackList() {
                 "Oshi no ko op",
                 "moon halo",
                 "orange koruru remix"
-                ].map((item,index)=>(
-                    <Link key={index} href={`/${ encodeURIComponent(item)}`} className="w-full flex h-10 items-center key={index} ">
-                        <div className="num ml-3 text-zinc-100">{index+"."}</div>
-                        <span className="ml-2 capitalize text-zinc-100 ">{item}</span>
-                    </Link>
+                ].map((data,index)=>(
+                    <TrackElement index={index} data={data}/>
                 ))
             }
             </div>        
         </div>
+    </div>
+
+    )
+}
+
+function TrackElement({index,data}:any){
+    return(
+    <div className="border-zinc-700" style={{borderBottomWidth:'1px'}}>
+        <Link key={index} href={`/${ encodeURIComponent(data)}`} className="w-full my-1 flex h-10 items-center key={index} rounded hover:bg-zinc-700 duration-100" >
+            <div className="cover ml-3 text-sm text-zinc-100">{index+1+"."}</div>
+            <span className="ml-2 text-sm capitalize text-zinc-100 ">{data}</span>
+            <div className="runtime ml-auto mr-2 text-sm text-zinc-300">{"3:56"}</div>
+        </Link>
+        
+    </div>
     )
 }
