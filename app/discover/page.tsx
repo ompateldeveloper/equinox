@@ -121,8 +121,8 @@ export default function Discover() {
 
     return (
         <div className="discover flex flex-wrap mb-20 relative ">
-            <EquilizerPanel/> 
-            {/* <TrackList/> */}
+            {/* <EquilizerPanel/>  */}
+            <TrackList/>
             {/* <TrackProgress rangeRef={rangeRef} handleRange={handleRange} /> */}
             <TrackControls  handlePlayPauseClick={handlePlayPauseClick} rangeRef={rangeRef} handleRange={handleRange}  />
             <HiddenAudioElement currentTrack={currentTrack} audioRef={audioRef} handleAudioProgress={handleAudioProgress} />
