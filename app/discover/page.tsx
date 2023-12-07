@@ -49,8 +49,8 @@ export default function Discover() {
         // src:"https://firebasestorage.googleapis.com/v0/b/equinox-abb58.appspot.com/o/music%2FYOASOBI%E3%80%8C%E3%82%A2%E3%82%A4%E3%83%89%E3%83%AB%E3%80%8D%20Official%20Music%20Video_256k.mp3?alt=media&token=3cfc4f8c-a040-493f-a0bd-2b70f4c470d1", // idol
         // src:"https://firebasestorage.googleapis.com/v0/b/equinox-abb58.appspot.com/o/music%2FOshi%20no%20Ko%20Ending%20(4K%2060FPS)%20Creditless_256k.mp3?alt=media&token=ba47c5fe-d827-48dd-a947-d08f4af62541", // oshinoko op
         // src:"https://firebasestorage.googleapis.com/v0/b/equinox-abb58.appspot.com/o/music%2FMoon%20Halo%20(feat.%20%E8%8C%B6%E7%90%86%E7%90%86%2C%20TetraCalyx%2C%20Hanser)%20(Honkai%20Impact%203Rd%20'Everlasting%20Fl.m4a?alt=media&token=24ef49ae-f056-474d-8663-a4519c3550ed", //moon halo
-        // src:"sound2.mp3", // play-unity
-        src:"sound.m4a", // moon halo
+        src:"sound2.mp3", // play-unity
+        // src:"sound.m4a", // moon halo
         // src:"orange.m4a", // koruru
         // src:"Kimi ni Todoke Season 2 Opening_256k.mp3", //given name
         // src:"Sawano Hiroyuki - aLIEz Aldnoah.Zero Full Lyrics.m4a", //given name
@@ -121,8 +121,8 @@ export default function Discover() {
 
     return (
         <div className="discover flex flex-wrap mb-20 relative ">
-            {/* <EquilizerPanel/>  */}
             <TrackList/>
+            <EquilizerPanel/> 
             {/* <TrackProgress rangeRef={rangeRef} handleRange={handleRange} /> */}
             <TrackControls  handlePlayPauseClick={handlePlayPauseClick} rangeRef={rangeRef} handleRange={handleRange}  />
             <HiddenAudioElement currentTrack={currentTrack} audioRef={audioRef} handleAudioProgress={handleAudioProgress} />
